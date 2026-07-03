@@ -1,0 +1,275 @@
+/* A4 Document Templates Style Sheet */
+/* Optimized for Screen Preview and A4 Paper Printing */
+
+.document-preview-wrapper {
+  background-color: #E2E8F0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  border: 1px solid #CBD5E1;
+}
+
+.a4-preview-box {
+  width: 210mm;
+  min-height: 297mm;
+  height: 297mm;
+  background-color: #FFFFFF;
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Shipment Info Bar for Tax Invoice */
+.shipment-info-bar {
+  display: flex;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.shipment-bar-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.shipment-bar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.shipment-bar-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.shipment-bar-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.shipment-bar-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.shipment-bar-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1E293B;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.1;
+}
+
+.shipment-bar-divider {
+  width: 1px;
+  height: 18px;
+  background-color: #E2E8F0;
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+
+/* Modern Billing Layout for Tax Invoice */
+.billing-grid {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.particulars-section {
+  flex: 1.4;
+  min-width: 0;
+}
+.particulars-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #E2E8F0;
+}
+.particulars-table th {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 6px 8px;
+  text-align: left;
+  border: 1px solid #0F172A;
+  letter-spacing: 0.5px;
+}
+.particulars-table th.amount-col,
+.particulars-table td.amount-col {
+  text-align: right;
+  width: 100px;
+}
+.particulars-table td {
+  padding: 5.5px 8px;
+  border: 1px solid #E2E8F0;
+  font-size: 10.5px;
+}
+.particulars-table tr:nth-child(even) td {
+  background-color: #F8FAFC;
+}
+.summary-section {
+  flex: 1;
+  min-width: 0;
+}
+.summary-card {
+  border: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.summary-card-header {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #B30000;
+  border-bottom: 1.5px solid #E2E8F0;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  padding: 2.5px 0;
+}
+.summary-row-label {
+  color: #475569;
+  font-weight: 500;
+}
+.summary-row-value {
+  color: #0F172A;
+  font-weight: 600;
+  text-align: right;
+}
+.summary-row.total-row {
+  border-top: 1.5px solid #0F172A;
+  padding-top: 6px;
+  margin-top: 2px;
+}
+.summary-row.total-row .summary-row-label {
+  color: #B30000;
+  font-weight: 700;
+  font-size: 14px;
+}
+.summary-row.total-row .summary-row-value {
+  color: #B30000;
+  font-weight: 800;
+  font-size: 20px;
+}
+.summary-words-box {
+  margin-top: 10px;
+  border: 1px solid #E2E8F0;
+  background-color: #F8FAFC;
+  padding: 8px;
+  font-size: 10.5px;
+}
+
+
+/* LR Top Notice Header Grid */
+.lr-header-block {
+  display: grid;
+  grid-template-columns: 2.2fr 0.8fr 1.5fr;
+  gap: 15px;
+  border: 1px solid #AEB6BF;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  background-color: #FFFFFF;
+  align-items: center;
+}
+.lr-header-notice {
+  display: flex;
+  flex-direction: column;
+}
+.lr-header-risk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #AEB6BF;
+  border-right: 1px solid #AEB6BF;
+  padding: 0 10px;
+  text-align: center;
+  height: 100%;
+  min-height: 55px;
+}
+.lr-header-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+
+/* LR Dual Signatures Card */
+.lr-signature-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #AEB6BF;
+  background-color: #FFFFFF;
+  margin-top: 15px;
+}
+.lr-sig-card{flex-direction:column;justify-content:space-between;min-height:165px;padding:10px 15px;display:flex}
+.lr-sig-card-left{text-align:center;border-right:1px solid #AEB6BF}
+.lr-sig-card-right{text-align:center}
+
+/* Print Overrides */
+@media print {
+  /* Hide everything except the print-area container */
+  body * {
+    visibility: hidden !important;
+    background-color: white !important;
+  }
+  
+  #printable-document-area, 
+  #printable-document-area * {
+    visibility: visible !important;
+  }
+  
+  #printable-document-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Force print background colors for chrome-based browsers */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
