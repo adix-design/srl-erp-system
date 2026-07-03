@@ -58,7 +58,7 @@ const getCommonStyles = () => {
       .a4-container {
         width: 210mm;
         height: 297mm;
-        padding: 12mm 8mm;
+        padding: 10mm 10mm;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -1044,7 +1044,7 @@ const renderLR = (data) => {
           max-width: 170px !important;
         }
         .a4-container {
-          padding-bottom: 6mm !important;
+          padding: 10mm 10mm 6mm 10mm !important;
         }
         .lr-footer-wrapper {
           margin-top: auto !important;
@@ -1333,22 +1333,23 @@ const renderMoneyReceipt = (data) => {
                 <td style="font-weight: 700; color: #0F172A; padding: 15px 0 15px 4px;">${data.referenceNumber || data.paymentRef || 'N/A'}</td>
               </tr>
               <tr>
-                <td colspan="2" style="color: #5F6772; font-weight: 600; padding: 20px 4px 20px 0;">Rupees in Words</td>
-                <td colspan="4" style="font-weight: 700; color: #0F172A; padding: 20px 4px 20px 0;">: <span style="margin-left: 8px;">${data.amountInWords || 'Rupees Only'}</span></td>
+                <td style="color: #5F6772; font-weight: 600; padding: 20px 4px 20px 0;">Rupees in Words</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 20px 0;">:</td>
+                <td colspan="4" style="font-weight: 700; color: #0F172A; padding: 20px 4px;">${data.amountInWords || 'Rupees Only'}</td>
               </tr>
             </table>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 35px;">
             <!-- Amount Section -->
-            <div style="background-color: #B30000; color: #FFFFFF; border-radius: 0; padding: 16px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-              <div style="font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; opacity: 0.9;">Amount Received</div>
-              <div style="font-size: 14px; font-weight: 700;">₹ ${(Number(data.amount || 0)).toFixed(2)}</div>
+            <div style="background-color: #B30000; color: #FFFFFF; border-radius: 0; padding: 12px 24px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); min-width: 210px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #B30000;">
+              <div style="font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; opacity: 0.85;">Amount Received</div>
+              <div style="font-size: 14px; font-weight: 700; letter-spacing: 0.5px;">₹ ${(Number(data.amount || 0)).toFixed(2)}</div>
             </div>
 
             <!-- Signature Section -->
             <div style="text-align: center; width: 260px; margin-bottom: 5px;">
-              <p style="font-size: 12px; font-weight: 700; color: #0F172A; margin-bottom: 80px; letter-spacing: 0.5px;">FOR <span style="color: #B30000; font-weight: 800;">SHREE RAM PACKERS & MOVERS</span></p>
+              <p style="font-size: 12px; font-weight: 700; color: #0F172A; margin-bottom: 100px; letter-spacing: 0.5px;">FOR <span style="color: #B30000; font-weight: 800;">SHREE RAM PACKERS & MOVERS</span></p>
               <div style="border-top: 1px solid #AEB6BF; width: 85%; margin: 0 auto 5px auto;"></div>
               <p style="font-size: 12px; color: #5F6772; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Authorized Signatory</p>
             </div>
