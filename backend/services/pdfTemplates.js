@@ -97,12 +97,19 @@ const getCommonStyles = () => {
       }
 
       .company-tagline {
-        font-size: 11.5px;
+        font-size: 14px;
         font-weight: 600;
         letter-spacing: 2px;
         color: #B30000;
         margin-bottom: 6px;
         text-transform: uppercase;
+      }
+
+      .address-card-body {
+        min-height: 76px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
 
       .company-details {
@@ -595,7 +602,7 @@ const renderTaxInvoice = (data) => {
     <html>
     <head>
       <meta charset="utf-8">
-      <title>Tax Invoice - ${data.invoiceNumber || 'Draft'}</title>
+      <title>Invoice - ${data.invoiceNumber || 'Draft'}</title>
       ${getCommonStyles()}
       <style>
         /* Increase body/content typography only for Tax Invoice */
@@ -619,7 +626,7 @@ const renderTaxInvoice = (data) => {
     <body>
       <div class="a4-container">
         <div class="content-area">
-           ${getHeaderHTML('Tax Invoice', data.invoiceNumber || '4098', data.createdAt || new Date(), 'Invoice No')}
+           ${getHeaderHTML('Invoice', data.invoiceNumber || '4098', data.createdAt || new Date(), 'Invoice No')}
           
           <div class="section-grid" style="margin-bottom: 22px;">
             <div class="info-card">
@@ -627,7 +634,7 @@ const renderTaxInvoice = (data) => {
                 <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: #B30000; display: inline-block; vertical-align: middle; margin-right: 3px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 <span style="vertical-align: middle;">BILL TO</span>
               </div>
-              <div class="info-card-body">
+              <div class="info-card-body address-card-body">
                 <p><strong>Name:</strong> ${data.customerName}</p>
                 <p><strong>Phone:</strong> ${data.phone}</p>
                 <p><strong>Address:</strong> ${data.pickupAddress}</p>
@@ -639,7 +646,7 @@ const renderTaxInvoice = (data) => {
                 <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: #B30000; display: inline-block; vertical-align: middle; margin-right: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 <span style="vertical-align: middle;">DELIVERY</span>
               </div>
-              <div class="info-card-body">
+              <div class="info-card-body address-card-body">
                 <p><strong>Name:</strong> ${data.customerName}</p>
                 <p><strong>Phone:</strong> ${data.phone}</p>
                 <p><strong>Address:</strong> ${data.deliveryAddress}</p>
@@ -1100,11 +1107,33 @@ const renderLR = (data) => {
  
             <!-- Right Column: Shipment Information Rows -->
             <div class="lr-header-info">
-              <div><span style="color: #5F6772;">LR No. :</span> <strong style="color: #B30000;">${data.lrNumber || 'N/A'}</strong></div>
-              <div style="margin-top: 1px;"><span style="color: #5F6772;">LR Date :</span> <strong style="color: #B30000;">${data.createdAt ? new Date(data.createdAt).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN')}</strong></div>
-              <div style="margin-top: 1px;"><span style="color: #5F6772;">Move From :</span> <strong style="color: #B30000;">${data.pickupCity || 'N/A'}</strong></div>
-              <div style="margin-top: 1px;"><span style="color: #5F6772;">Move To :</span> <strong style="color: #B30000;">${data.deliveryCity || 'N/A'}</strong></div>
-              <div style="margin-top: 1px;"><span style="color: #5F6772;">Vehicle No. :</span> <strong style="color: #B30000;">${data.truckNumber || 'N/A'}</strong></div>
+              <table style="width: 100%; border-collapse: collapse; border: none; font-size: 11px;">
+                <tr style="height: 24px;">
+                  <td style="width: 65px; color: #5F6772; font-weight: 500; padding: 2px 0;">LR No.</td>
+                  <td style="width: 8px; color: #5F6772; font-weight: 500; padding: 2px 0;">:</td>
+                  <td style="color: #B30000; font-weight: 700; padding: 2px 0;">${data.lrNumber || 'N/A'}</td>
+                </tr>
+                <tr style="height: 24px;">
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">LR Date</td>
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">:</td>
+                  <td style="color: #B30000; font-weight: 700; padding: 2px 0;">${data.createdAt ? new Date(data.createdAt).toLocaleDateString('en-IN') : new Date().toLocaleDateString('en-IN')}</td>
+                </tr>
+                <tr style="height: 24px;">
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">Move From</td>
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">:</td>
+                  <td style="color: #B30000; font-weight: 700; padding: 2px 0;">${data.pickupCity || 'N/A'}</td>
+                </tr>
+                <tr style="height: 24px;">
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">Move To</td>
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">:</td>
+                  <td style="color: #B30000; font-weight: 700; padding: 2px 0;">${data.deliveryCity || 'N/A'}</td>
+                </tr>
+                <tr style="height: 24px;">
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">Vehicle No.</td>
+                  <td style="color: #5F6772; font-weight: 500; padding: 2px 0;">:</td>
+                  <td style="color: #B30000; font-weight: 700; padding: 2px 0;">${data.truckNumber || 'N/A'}</td>
+                </tr>
+              </table>
             </div>
           </div>
  
@@ -1112,7 +1141,7 @@ const renderLR = (data) => {
             <!-- Left Card: PICKUP DETAILS -->
             <div class="lr-meta-card" style="padding: 10px; background-color: #FFFFFF;">
               <div style="font-size: 12px; font-weight: 700; color: #B30000; border-bottom: 1px solid #AEB6BF; padding-bottom: 4px; margin-bottom: 6px; text-transform: uppercase;">PICKUP DETAILS</div>
-              <div style="font-size: 11px; line-height: 1.4; color: #0F172A;">
+              <div class="address-card-body" style="font-size: 11px; line-height: 1.4; color: #0F172A;">
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Name:</span> <strong style="color: #0F172A; font-weight: 600;">${data.customerName}</strong></p>
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Phone:</span> <strong style="color: #0F172A; font-weight: 600;">${data.phone}</strong></p>
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Address:</span> <strong style="color: #0F172A; font-weight: 600;">${data.pickupAddress}</strong></p>
@@ -1123,7 +1152,7 @@ const renderLR = (data) => {
             <!-- Right Card: DELIVERY DETAILS -->
             <div class="lr-meta-card" style="padding: 10px; background-color: #FFFFFF;">
               <div style="font-size: 12px; font-weight: 700; color: #B30000; border-bottom: 1px solid #AEB6BF; padding-bottom: 4px; margin-bottom: 6px; text-transform: uppercase;">DELIVERY DETAILS</div>
-              <div style="font-size: 11px; line-height: 1.4; color: #0F172A;">
+              <div class="address-card-body" style="font-size: 11px; line-height: 1.4; color: #0F172A;">
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Name:</span> <strong style="color: #0F172A; font-weight: 600;">${data.customerName}</strong></p>
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Phone:</span> <strong style="color: #0F172A; font-weight: 600;">${data.phone}</strong></p>
                 <p style="margin: 0 0 2px 0;"><span style="color: #5F6772; font-weight: 500;">Address:</span> <strong style="color: #0F172A; font-weight: 600;">${data.deliveryAddress}</strong></p>
@@ -1157,7 +1186,7 @@ const renderLR = (data) => {
           </div>
  
           <!-- BLOCK 2: FREIGHT / GOODS DETAILS -->
-          <div class="info-card" style="display: grid; grid-template-columns: 1.2fr 1.8fr; gap: 10px; padding: 8px; margin-bottom: 8px; background-color: #FFFFFF;">
+          <div class="info-card" style="display: grid; grid-template-columns: 1.1fr 1.9fr; gap: 10px; padding: 8px; margin-bottom: 8px; background-color: #FFFFFF;">
             <!-- Left Column: Description & Remark -->
             <div style="border-right: 1px solid #AEB6BF; padding-right: 12px; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
@@ -1222,7 +1251,7 @@ const renderLR = (data) => {
 
             <!-- Right Block: Receiver Signature -->
             <div class="info-card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center; min-height: 220px; padding: 12px 10px; border-radius: 0; background-color: #FFFFFF; border: 1px solid #AEB6BF;">
-              <div class="info-card-header" style="text-align: center; border-bottom: none; padding-bottom: 4px; margin-bottom: 6px; color: #5F6772; font-size: 9px; text-transform: uppercase;">I AGREE TO THE TERMS & CONDITIONS</div>
+              <div class="info-card-header" style="text-align: center; border-bottom: none; padding-bottom: 4px; margin-bottom: 6px; color: #5F6772; font-size: 9px; text-transform: uppercase;">I AGREE TO THE TERMS & CONDITIONS AS THE OVERLEAF</div>
               <div style="font-weight: 600; color: #5F6772; margin-top: 2px;">SIGNATURE RECEIVER</div>
               <div style="flex-grow: 1; min-height: 130px;"></div>
               <div style="border-top: 1px solid #AEB6BF; width: 85%; margin: 0 auto 4px auto;"></div>
@@ -1268,56 +1297,65 @@ const renderMoneyReceipt = (data) => {
            ${getHeaderHTML('Money Receipt', data.receiptNumber || '2698', data.createdAt || new Date(), 'Receipt No')}
           
           <div class="info-card" style="margin-top: 30px; border-radius: 0; border: none;">
-            <div class="info-card-header" style="color: #0F172A; border-bottom: 2px solid #B30000; font-weight: 700; font-size: 12px;">Payment Details</div>
+            <div class="info-card-header" style="color: #0F172A; border-bottom: 2px solid #B30000; font-weight: 700; font-size: 12.5px;">Payment Details</div>
             
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #AEB6BF; padding: 8px 4px; font-size: 10px;">
-              <div><span style="color: #5F6772; font-weight: 600;">Received From</span>: <span style="font-weight: 700; color: #B30000;">${data.customerName || 'N/A'}</span></div>
-              <div><span style="color: #5F6772; font-weight: 600;">Phone</span>: <span style="font-weight: 700; color: #0F172A;">${data.phone || 'N/A'}</span></div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #AEB6BF; padding: 8px 4px; font-size: 10px;">
-              <div><span style="color: #5F6772; font-weight: 600;">Towards</span>: <span style="font-weight: 600; color: #0F172A;">${data.invoiceNumber ? 'Final Payment of Invoice No. ' + data.invoiceNumber : 'N/A'}</span></div>
-              <div><span style="color: #5F6772; font-weight: 600;">Dated</span>: <span style="font-weight: 600; color: #0F172A;">${new Date(data.createdAt || new Date()).toLocaleDateString('en-IN')}</span></div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #AEB6BF; padding: 8px 4px; font-size: 10px;">
-              <div><span style="color: #5F6772; font-weight: 600;">From</span>: <span style="font-weight: 600; color: #0F172A;">${data.pickupCity || 'N/A'}</span></div>
-              <div><span style="color: #5F6772; font-weight: 600;">To</span>: <span style="font-weight: 600; color: #0F172A;">${data.deliveryCity || 'N/A'}</span></div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #AEB6BF; padding: 8px 4px; font-size: 10px;">
-              <div><span style="color: #5F6772; font-weight: 600;">Payment Mode</span>: <span style="font-weight: 700; color: #0F172A;">${data.paymentMode || 'N/A'}</span></div>
-              <div><span style="color: #5F6772; font-weight: 600;">Payment Ref.</span>: <span style="font-weight: 700; color: #0F172A;">${data.referenceNumber || data.paymentRef || 'N/A'}</span></div>
-            </div>
-
-            <div style="padding: 10px 4px; font-size: 10px;">
-              <span style="color: #5F6772; font-weight: 600;">Rupees in Words</span>: <span style="font-weight: 700; font-style: italic; color: #0F172A;">${data.amountInWords || 'Rupees Only'}</span>
-            </div>
+            <table style="width: 100%; border-collapse: collapse; border: none; font-size: 12px;">
+              <tr style="border-bottom: 1px solid #AEB6BF;">
+                <td style="width: 105px; color: #5F6772; font-weight: 600; padding: 15px 4px 15px 0;">Received From</td>
+                <td style="width: 10px; color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 700; color: #0F172A; padding: 15px 4px;">${data.customerName || 'N/A'}</td>
+                <td style="width: 90px; color: #5F6772; font-weight: 600; padding: 15px 4px;">Phone</td>
+                <td style="width: 10px; color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 700; color: #0F172A; padding: 15px 0 15px 4px;">${data.phone || 'N/A'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #AEB6BF;">
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px 15px 0;">Towards</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 600; color: #0F172A; padding: 15px 4px;">${data.invoiceNumber ? 'Final Payment of Invoice No. ' + data.invoiceNumber : 'N/A'}</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px;">Dated</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 600; color: #0F172A; padding: 15px 0 15px 4px;">${new Date(data.createdAt || new Date()).toLocaleDateString('en-IN')}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #AEB6BF;">
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px 15px 0;">From</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 600; color: #0F172A; padding: 15px 4px;">${data.pickupCity || 'N/A'}</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px;">To</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 600; color: #0F172A; padding: 15px 0 15px 4px;">${data.deliveryCity || 'N/A'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #AEB6BF;">
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px 15px 0;">Payment Mode</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 700; color: #0F172A; padding: 15px 4px;">${data.paymentMode || 'N/A'}</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 4px;">Payment Ref.</td>
+                <td style="color: #5F6772; font-weight: 600; padding: 15px 0;">:</td>
+                <td style="font-weight: 700; color: #0F172A; padding: 15px 0 15px 4px;">${data.referenceNumber || data.paymentRef || 'N/A'}</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="color: #5F6772; font-weight: 600; padding: 20px 4px 20px 0;">Rupees in Words</td>
+                <td colspan="4" style="font-weight: 700; color: #0F172A; padding: 20px 4px 20px 0;">: <span style="margin-left: 8px;">${data.amountInWords || 'Rupees Only'}</span></td>
+              </tr>
+            </table>
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 35px;">
             <!-- Amount Section -->
-            <div style="background-color: #B30000; color: #FFFFFF; border-radius: 0; padding: 14px 28px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 220px;">
-              <div style="font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 6px; opacity: 0.9;">Amount Received</div>
-              <div style="font-size: 13px; font-weight: 700;">₹ ${(Number(data.amount || 0)).toFixed(2)}</div>
+            <div style="background-color: #B30000; color: #FFFFFF; border-radius: 0; padding: 16px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <div style="font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; opacity: 0.9;">Amount Received</div>
+              <div style="font-size: 14px; font-weight: 700;">₹ ${(Number(data.amount || 0)).toFixed(2)}</div>
             </div>
 
             <!-- Signature Section -->
             <div style="text-align: center; width: 260px; margin-bottom: 5px;">
-              <p style="font-size: 9px; font-weight: 700; color: #0F172A; margin-bottom: 60px; letter-spacing: 0.5px;">FOR <span style="color: #B30000; font-weight: 800;">SHREE RAM PACKERS & MOVERS</span></p>
+              <p style="font-size: 12px; font-weight: 700; color: #0F172A; margin-bottom: 80px; letter-spacing: 0.5px;">FOR <span style="color: #B30000; font-weight: 800;">SHREE RAM PACKERS & MOVERS</span></p>
               <div style="border-top: 1px solid #AEB6BF; width: 85%; margin: 0 auto 5px auto;"></div>
-              <p style="font-size: 8px; color: #5F6772; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Authorized Signatory</p>
+              <p style="font-size: 12px; color: #5F6772; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Authorized Signatory</p>
             </div>
           </div>
         </div>
 
-        <div class="footer-block" style="margin-top: auto;">
-          <div style="margin-top: 15px; border-top: 1px solid #AEB6BF; padding-top: 8px;" class="page-footer">
-            <span>Official Payment Acknowledgment</span>
-            <span>Page 1 of 1</span>
-          </div>
-        </div>
+
         <!-- Professional Footer Support Strip -->
         <div class="document-footer-strip" style="border-top: 1.5px solid #AEB6BF; padding-top: 6px; margin-top: 10px; text-align: center; font-size: 10px; color: #5F6772; font-weight: 500;">
           <div style="display: flex; align-items: center; justify-content: center; gap: 4px; margin-bottom: 2px;">
